@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<meta charset="UTF-8" />
+
+<head th:replace="/Fragment/resources_css :: css_resources"></head>
+
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+		<div class="modal fade" id="static" tabindex="-1" role="basic"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"></button>
+					<h4 class="modal-title">Information</h4>
+				</div>
+				<div class="modal-body">
+
+
+					<div class="portlet-body" id="msg"></div>
+
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn  btn-outline btn-circle"
+						data-dismiss="modal"
+						style="background-color: #ffdb4d; color: white;">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a id="modalAbo" data-toggle="modal" href="#static"></a>
+	
+	
+
+	<!-- BEGIN HEADER -->
+	<div th:include="/Fragment/header :: entete"></div>
+
+	<!-- END HEADER -->
+	<!-- BEGIN HEADER & CONTENT DIVIDER -->
+	<div class="clearfix"></div>
+	<!-- END HEADER & CONTENT DIVIDER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<div th:include="/Fragment/menu :: menu"></div>
+		<!-- END SIDEBAR -->
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<!-- BEGIN CONTENT BODY -->
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+
+				<h3 class="page-title">Espace Client</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li><i class="icon-home"></i> <a href="index.html">Acceuil</a>
+							<i class="fa fa-angle-right"></i></li>
+						<li><a href="#">Abonnement</a> <i
+							class="fa fa-angle-right"></i></li>
+
+					</ul>
+
+				</div>
+				<!-- END PAGE HEADER-->
+				<div class="tab-pane active" id="tab_0"
+					style="background-color: #17c4bb">
+					<div class="portlet box green" >
+						<div class="portlet-title" style="background-color:#3b5998;">
+							<div class="caption">
+								<i class="fa fa-gift"></i>Créer une demande d'abonnement
+							</div>
+							<div class="tools">
+								<a href="javascript:;" class="collapse"> </a> <a
+									href="#portlet-config" data-toggle="modal" class="config">
+								</a> <a href="javascript:;" class="reload"> </a> <a
+									href="javascript:;" class="remove"> </a>
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<!-- BEGIN FORM-->
+							<form action="#" class="form-horizontal"
+								th:action="@{/Abonnement/creerAbonnement}" method="post"
+								th:object="${abonnement}">
+								<div class="form-body">
+									<div class="form-group">
+										<label class="col-md-4 control-label">Numéro tournée</label>
+										<div class="col-md-4">
+											<input type="text" class="form-control input-circle"
+												placeholder="Enter text" th:field="*{tournee}"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label">Service</label>
+										<div class="col-md-4">
+											<select th:field="*{service}" class="form-control input-circle"
+												required="required" >
+												<option th:each="service : ${services}"
+													th:value="${service}"
+													th:text="${service}"></option>
+											</select>
+
+										</div>
+									</div>
+									
+									<div id="tarifDivAjax"></div>
+
+									<div class="form-actions">
+										<div class="row">
+											<div class="col-md-offset-4 col-md-9">
+												<button type="submit" class="btn btn-circle " style="background-color:#3b5998; color:white;">Valider</button>
+												<button type="button"
+													class="btn btn-circle grey-salsa btn-outline">Annuler</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+							<!-- END FORM-->
+						</div>
+					</div>
+				</div>
+				<!-- END CONTENT BODY -->
+			</div>
+
+		</div>
+		<!-- END CONTAINER -->
+		<!-- BEGIN FOOTER -->
+		<div th:include="/Fragment/footer:: footer"></div>
+
+		<!-- END FOOTER -->
+		<!--[if lt IE 9]>
+<script src="resources/assets/global/plugins/respond.min.js"></script>
+<script src="resources/assets/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+		<div th:include="/Fragment/resources_js :: js_resources"></div>
+		
+	</div>
+	<script th:inline="javascript">
+	
+	$(document).ready(function() {
+		$("#service").on("change",function(){
+			$.post("chargerTarif",//l url de la fct de traitement
+				{
+				service:$(this).val()//on envoie les parametres par lesquells on veut travailler dans le controller
+				},
+				function(data, status) {
+					if (status == "success") {
+						$("#tarifDivAjax").html(data);
+					}
+				}			
+			)
+		});
+		});
+		
+	/*<![CDATA[*/
+	
+	$("#modalAbo").hide();
+	checkAbo = /*[[${checkAbo}]]*/;
+	if (checkAbo) {
+    	$("#modalAbo").click();
+		$("#msg").html('Demande d abonnement envoyée.');
+	}
+	else if(checkAbo == false){
+		$("#modalAbo").click();
+		$("#msg").html('Demande d abonnement non envoyée. Vérifiez vos informations!');
+	}
+	 
+	 /*]]>*/
+		</script>
+</body>
+
+</html>

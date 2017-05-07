@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="menu">
+		<div class="page-sidebar-wrapper">
+			<!-- END SIDEBAR -->
+			<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+			<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+			<div class="page-sidebar navbar-collapse collapse">
+				<!-- BEGIN SIDEBAR MENU -->
+				<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+				<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+				<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+				<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+				<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+				<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+				<ul
+					class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu "
+					data-keep-expanded="false" data-auto-scroll="true"
+					data-slide-speed="200">
+					<li class="nav-item"><a href="javascript:;"
+						class="nav-link nav-toggle"> <i class="icon-home"></i> <span
+							class="title">Contrat</span> <span class="selected"></span> <span
+							class="arrow open"></span>
+					</a>
+						<ul class="sub-menu">
+
+							<li class="nav-item "><a th:href="@{/Contrat/association}"
+								class="nav-link "> <i class="icon-bulb"></i> <span
+									class="title">Association Contrat</span>
+							</a></li>
+							<li class="nav-item "><a th:href="@{/Contrat/listContrats}"
+								class="nav-link "> <i class="icon-graph"></i> <span
+									class="title">Liste Contrats</span>
+
+							</a></li>
+						</ul></li>
+					<li class="nav-item "><a href="javascript:;"
+						class="nav-link nav-toggle"> <i class="icon-diamond"></i> <span
+							class="title">Compte</span> <span class="arrow"></span>
+					</a>
+						<ul class="sub-menu ">
+							<li class="nav-item  "><a th:href="@{/Compte/consultation}"
+								class="nav-link "> <i class="icon-bulb"></i> <span
+									class="title">Récapitulatif Compte</span>
+							</a></li>
+
+
+
+						</ul></li>
+					<li class="nav-item "><a href="javascript:;"
+						class="nav-link nav-toggle"> <i class="icon-bar-chart"></i> <span
+							class="title">Consommation</span> <span class="arrow"></span>
+					</a>
+						<ul class="sub-menu">
+							<li class="nav-item  "><a
+								th:href="@{/Consommation/listConsommations}" class="nav-link ">
+									<i class="icon-graph"></i> <span class="title">Liste
+										Consommations</span>
+							</a></li>
+
+
+
+						</ul></li>
+					<li class="nav-item  "><a href="javascript:;"
+						class="nav-link nav-toggle"> <i class="icon-puzzle"></i> <span
+							class="title">Facilités</span> <span class="arrow"></span>
+					</a>
+						<ul class="sub-menu">
+							<li class="nav-item  "><a
+								th:href="@{/Facilites/listFacilites}" class="nav-link "> <i
+									class="icon-graph"></i> <span class="title">Liste
+										Facilités</span>
+							</a></li>
+
+						</ul></li>
+
+
+
+					<li class="nav-item  "><a href="?p="
+						class="nav-link nav-toggle"> <i class="icon-wallet"></i> <span
+							class="title">Devis</span> <span class="arrow"></span>
+					</a>
+						<ul class="sub-menu">
+							<li class="nav-item  "><a th:href="@{/Devis/listDevis}"
+								class="nav-link "> <i class="icon-graph"></i> <span
+									class="title">Liste Devis</span>
+							</a></li>
+
+						</ul></li>
+
+					<li class="nav-item  "><a href="javascript:;"
+						class="nav-link nav-toggle"> <i class="icon-bulb"></i> <span
+							class="title">Abonnement</span> <span class="arrow"></span>
+					</a>
+						<ul class="sub-menu">
+							<li class="nav-item "><a th:href="@{/Abonnement/ajoutAbo}"
+								class="nav-link "> <i class="icon-plus"></i> <span
+									class="title">Ajouter Abonnement</span>
+							</a></li>
+
+						</ul></li>
+
+					<li class="nav-item  "><a href="javascript:;"
+						class="nav-link nav-toggle"> <i class=" icon-wrench"></i> <span
+							class="title">Réclamation</span> <span class="arrow"></span>
+					</a>
+						<ul class="sub-menu">
+							<li class="nav-item  "><a
+								th:href="@{/Reclamation/ajoutReclamation}" class="nav-link ">
+									<i class="icon-plus"></i> <span class="title">Ajouter
+										Réclamation</span>
+							</a></li>
+							<li class="nav-item "><a
+								th:href="@{/Reclamation/listReclamations}" class="nav-link ">
+									<i class="icon-graph"></i> <span class="title">Liste
+										Réclamations</span>
+							</a></li>
+
+						</ul></li>
+
+					<li class="nav-item "><a href="javascript:;"
+						class="nav-link nav-toggle"> <i class="icon-layers"></i> <span
+							class="title">Factures</span> <span class="arrow"></span>
+					</a>
+						<ul class="sub-menu">
+							<li class="nav-item  "><a
+								th:href="@{/Facture/simulerFacture}" class="nav-link "> <i
+									class="icon-wrench"></i> <span class="title">Simuler 
+										Facture</span>
+							</a></li>
+							<li class="nav-item  "><a th:href="@{/Facture/listFactures}"
+								class="nav-link "> <i class="icon-graph"></i> <span
+									class="title">Liste Factures</span>
+							</a></li>
+
+
+						</ul></li>
+
+
+
+
+
+				</ul>
+				<!-- END SIDEBAR MENU -->
+			</div>
+			<!-- END SIDEBAR -->
+		</div>
+	</div>
+</body>
+</html>
+
+

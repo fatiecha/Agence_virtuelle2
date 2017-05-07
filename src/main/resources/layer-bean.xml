@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="radeema.client@gmail.com" />
+		<property name="password" value="azerty123456789" />
+
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- pr piece joint -->
+
+	<bean id="mailMail" class="org.gestion.av.serviceImpl.MailMail">
+		<property name="mailSender" ref="mailSender" />
+		<property name="simpleMailMessage" ref="customeMailMessage" />
+	</bean>
+
+	<bean id="customeMailMessage" class="org.springframework.mail.SimpleMailMessage">
+
+
+		<property name="subject" value="BIENVENU DANS VOTRE ESPACE CLIENT RADEEMA" />
+
+	</bean>
+
+<!-- kaptcha -->
+
+<!-- 	<beans xmlns="http://www.springframework.org/schema/beans" -->
+<!-- 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" -->
+<!-- 		xsi:schemaLocation="http://www.springframework.org/schema/beans -->
+<!-- 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> -->
+
+<!-- 		<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha"> -->
+<!-- 			<property name="config"> -->
+<!-- 				<bean class="com.google.code.kaptcha.util.Config"> -->
+<!-- 					<constructor-arg type="java.util.Properties" value="null"> -->
+<!-- 					</constructor-arg> -->
+<!-- 				</bean> -->
+<!-- 			</property> -->
+<!-- 		</bean> -->
+
+<!-- 	</beans> -->
+
+
+	<bean id="generatePDF" class="org.gestion.av.serviceImpl.GeneratePDF"></bean>
+	<bean id="countFIMetier" class="org.gestion.av.metier.CountFIMetier"></bean>
+	<bean id="clientMetier" class="org.gestion.av.metier.AjoutClientMetier"></bean>
+	<bean id="concliMetier" class="org.gestion.av.metier.AjoutConCliMetier"></bean>
+	<bean id="aboMetier" class="org.gestion.av.metier.AjoutDemAboMetier"></bean>
+	<bean id="reclamationMetier" class="org.gestion.av.metier.AjoutReclamationMetier"></bean>
+	<bean id="connexionMetier" class="org.gestion.av.metier.ConnexionMetier"></bean>
+	<bean id="consulterCompteMetier" class="org.gestion.av.metier.ConsulterCompteMetier"></bean>
+	<bean id="consulterConsommationsMetier" class="org.gestion.av.metier.ConsulterConsommationsMetier"></bean>
+	<bean id="consulterContratsMetier" class="org.gestion.av.metier.ConsulterContratsMetier"></bean>
+	<bean id="consulterDevisMetier" class="org.gestion.av.metier.ConsulterDevisMetier"></bean>
+	<bean id="consulterFacilitesMetier" class="org.gestion.av.metier.ConsulterFacilitesMetier"></bean>
+	<bean id="consulterEcheancesMetier" class="org.gestion.av.metier.ConsulterEcheancesMetier"></bean>
+	<bean id="consulterFacturesMetier" class="org.gestion.av.metier.ConsulterFacturesMetier"></bean>
+	<bean id="consulterReclamationsMetier" class="org.gestion.av.metier.ConsulterReclamationsMetier"></bean>
+	<bean id="daoService" class="org.gestion.av.daoImpl.AgenceDaoImpl"></bean>
+	<bean id="agenceServiceImpl" class="org.gestion.av.serviceImpl.AgenceServiceImpl">
+		<property name="dao" ref="daoService"></property>
+	</bean>
+
+	<bean id="aboController" class="org.gestion.av.controllers.AboController">
+		<property name="aboMetier" ref="aboMetier"></property>
+	</bean>
+
+	<bean id="clientController" class="org.gestion.av.controllers.ClientController">
+		<property name="clientMetier" ref="clientMetier"></property>
+		<property name="connexionMetier" ref="connexionMetier"></property>
+		<property name="countFIMetier" ref="countFIMetier"></property>
+		<property name="agenceService" ref="agenceServiceImpl"></property>
+		<property name="mailSender" ref="mailSender"></property>
+
+
+
+	</bean>
+	<bean id="compteController" class="org.gestion.av.controllers.CompteController">
+		<property name="consulterCompteMetier" ref="consulterCompteMetier"></property>
+		<property name="consulterContratsMetier" ref="consulterContratsMetier"></property>
+
+	</bean>
+
+	<bean id="consommationController" class="org.gestion.av.controllers.ConsommationController">
+		<property name="consulterConsommationsMetier" ref="consulterConsommationsMetier"></property>
+		<property name="consulterContratsMetier" ref="consulterContratsMetier"></property>
+
+	</bean>
+	<bean id="contratController" class="org.gestion.av.controllers.ContratController">
+		<property name="consulterContratsMetier" ref="consulterContratsMetier"></property>
+		<property name="concliMetier" ref="concliMetier"></property>
+
+	</bean>
+	<bean id="devisController" class="org.gestion.av.controllers.DevisController">
+		<property name="consulterDevisMetier" ref="consulterDevisMetier"></property>
+		<property name="consulterContratsMetier" ref="consulterContratsMetier"></property>
+
+	</bean>
+	<bean id="faciliteController" class="org.gestion.av.controllers.FaciliteController">
+		<property name="consulterFacilitesMetier" ref="consulterFacilitesMetier"></property>
+		<property name="consulterContratsMetier" ref="consulterContratsMetier"></property>
+		<property name="consulterEcheancesMetier" ref="consulterEcheancesMetier"></property>
+
+	</bean>
+	<bean id="factureController" class="org.gestion.av.controllers.FactureController">
+		<property name="consulterFacturesMetier" ref="consulterFacturesMetier"></property>
+		<property name="consulterContratsMetier" ref="consulterContratsMetier"></property>
+		<property name="generatePDF" ref="generatePDF"></property>
+		<property name="mailMail" ref="mailMail"></property>
+
+
+	</bean>
+	<bean id="reclamationController" class="org.gestion.av.controllers.ReclamationController">
+		<property name="reclamationMetier" ref="reclamationMetier"></property>
+		<property name="consulterReclamationsMetier" ref="consulterReclamationsMetier"></property>
+		<property name="consulterContratsMetier" ref="consulterContratsMetier"></property>
+		<property name="agenceService" ref="agenceServiceImpl"></property>
+	</bean>
+
+
+
+</beans>

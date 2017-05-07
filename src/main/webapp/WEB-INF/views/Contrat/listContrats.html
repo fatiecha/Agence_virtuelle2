@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<meta charset="UTF-8" />
+<head th:replace="/Fragment/resources_css :: css_resources"></head>
+<style>
+.portlet-title {
+	background-color: #3b5998;
+}
+</style>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+
+
+	<div class="modal fade" id="static" tabindex="-1" role="basic"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"></button>
+					<h4 class="modal-title">Détail Contrat</h4>
+				</div>
+				<div class="modal-body">
+
+
+					<div class="portlet-body">
+						<div class="table-scrollable">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Num Compteur</th>
+										<th>Date pose compteur</th>
+										<th>Branchement</th>
+										<th>Agence</th>
+										<th>Etat</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><span id="numCompteur"></span></td>
+										<td><span id="datePoseCompteurS"></span></td>
+										<td><span id="branchement"></span></td>
+										<td><span id="agence"></span></td>
+										<td><span id="etat"></span></td>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn  btn-outline btn-circle"
+						data-dismiss="modal"
+						style="background-color: #ffdb4d; color: white;">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- BEGIN HEADER -->
+	<div th:include="/Fragment/header :: entete"></div>
+
+	<!-- END HEADER -->
+	<!-- BEGIN HEADER & CONTENT DIVIDER -->
+	<div class="clearfix"></div>
+	<!-- END HEADER & CONTENT DIVIDER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<div th:include="/Fragment/menu :: menu"></div>
+		<!-- END SIDEBAR -->
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<!-- BEGIN CONTENT BODY -->
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+
+				<h3 class="page-title">Espace Client</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li><i class="icon-home"></i> <a href="index.html">Acceuil</a>
+							<i class="fa fa-angle-right"></i></li>
+						<li><a href="#">Mes Contrat</a> <i class="fa fa-angle-right"></i>
+						</li>
+
+					</ul>
+
+				</div>
+				<!-- END PAGE HEADER-->
+				<div class="portlet box green">
+					<div class="portlet-title" style="background-color: #3b5998;">
+						<div class="caption">
+							<i class="fa fa-cogs"></i>Mes Contrats
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class="collapse"> </a> <a
+								href="#portlet-config" data-toggle="modal" class="config"> </a>
+							<a href="javascript:;" class="reload"> </a> <a
+								href="javascript:;" class="remove"> </a>
+						</div>
+					</div>
+					<div class="portlet-body flip-scroll">
+						<table
+							class="table table-bordered table-striped table-condensed flip-content">
+							<thead class="flip-content">
+								<tr>
+									<th width="20%" align="center">Numéro Contrat</th>
+
+									<th width="20%" style="">Service</th>
+									<th width="20%" align="center">Numéro Client</th>
+									<th width="25%" align="center">Nom Prénom Client</th>
+									<th width="15%" align="center">Action</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="contrat : ${contrats}">
+									<td th:text="${contrat.numero}"></td>
+									<td th:text="${contrat.service}"></td>
+									<td th:text="${contrat.idClient}"></td>
+									<td th:text="${contrat.NomClient +' '+ session.clientConnecte.prenom}"></td>
+
+									<td><div class="form-actions ">
+											<a data-toggle="modal" href="#static">
+												<button style="background-color: #3b5998; color: white;"
+													type="button" class="icon-list btn btn-circle "
+													th:onclick="'detailContrat(\'' + ${contrat.numCompteur} +'\',\' ' +
+													 ${contrat.datePoseCompteurS}+'\',\' ' + ${contrat.branchement} + '\',\' '+ ${contrat.agence} +'\',\' ' + ${contrat.etat}+'\');'">
+													Détail</button>
+											</a>
+										</div></td>
+								</tr>
+
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+
+				<!-- 										<td  -->
+				<!-- 											th:text="${contrat.tournee}"></td> -->
+				<!-- 									<td th:text="${contrat.numCompteur}"></td> -->
+				<!-- 									<td th:text="${contrat.datePoseCompteurS}"></td> -->
+				<!-- 									<td th:text="${contrat.branchement}"></td> -->
+				<!-- 									<td th:text="${contrat.agence}"></td> -->
+				<!-- 									<td th:text="${contrat.etat}"></td> -->
+
+
+
+
+
+
+			</div>
+			<!-- END CONTENT BODY -->
+		</div>
+
+	</div>
+	<!-- END CONTAINER -->
+	<!-- BEGIN FOOTER -->
+	<div th:include="/Fragment/footer:: footer"></div>
+
+	<!-- END FOOTER -->
+	<!--[if lt IE 9]>
+<script src="resources/assets/global/plugins/respond.min.js"></script>
+<script src="resources/assets/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+	<div th:include="/Fragment/resources_js :: js_resources"></div>
+	<script type="text/javascript">
+		function detailContrat(numCompteur, datePoseCompteurS, branchement,
+				agence, etat) {
+
+			$("#numCompteur").text(numCompteur);
+			$("#datePoseCompteurS").text(datePoseCompteurS);
+			$("#branchement").text(branchement);
+			$("#agence").text(agence);
+			$("#etat").text(etat);
+
+		}
+	</script>
+
+</body>
+
+</html>

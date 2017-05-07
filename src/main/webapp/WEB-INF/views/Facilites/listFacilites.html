@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<meta charset="UTF-8" />
+<head th:replace="/Fragment/resources_css :: css_resources"></head>
+
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+	<div class="modal fade" id="modalforemptylist" tabindex="-1" role="basic"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"></button>
+					<h4 class="modal-title">Information</h4>
+				</div>
+				<div class="modal-body">
+
+
+					<div class="portlet-body">Vous n'avez pas de Facilités pour ce contrat!</div>
+
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn  btn-outline btn-circle"
+						data-dismiss="modal"
+						style="background-color: #ffdb4d; color: white;">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a id="modalFacilite" data-toggle="modal" href="#modalforemptylist"></a>
+	<!-- BEGIN HEADER -->
+	<div th:include="/Fragment/header :: entete"></div>
+
+	<!-- END HEADER -->
+	<!-- BEGIN HEADER & CONTENT DIVIDER -->
+	<div class="clearfix"></div>
+	<!-- END HEADER & CONTENT DIVIDER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<div th:include="/Fragment/menu :: menu"></div>
+		<!-- END SIDEBAR -->
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<!-- BEGIN CONTENT BODY -->
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+
+				<h3 class="page-title">Espace Client</h3>
+				<div class="page-bar">
+					<ul class="page-breadcrumb">
+						<li><i class="icon-home"></i> <a href="index.html">Acceuil</a>
+							<i class="fa fa-angle-right"></i></li>
+						<li><a href="#"> Mes facilités</a> <i
+							class="fa fa-angle-right"></i></li>
+
+					</ul>
+
+				</div>
+				<!-- END PAGE HEADER-->
+				<div class="tab-pane active" id="tab_0"
+					>
+					<div class="portlet box green" >
+						<div class="portlet-title" style="background-color:#3b5998;">
+							<div class="caption">
+								<i class="fa fa-gift"></i>Mes facilités
+							</div>
+							<div class="tools">
+								<a href="javascript:;" class="collapse"> </a> <a
+									href="#portlet-config" data-toggle="modal" class="config">
+								</a> <a href="javascript:;" class="reload"> </a> <a
+									href="javascript:;" class="remove"> </a>
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<!-- BEGIN FORM-->
+							<form action="#" class="form-horizontal" th:action="@{/Facilites/FiltreListes}" method="post"
+								th:object="${facilite}">
+								<div class="form-body">
+									<div class="form-group">
+										<label class="col-md-4 control-label">Choisir votre
+											Contrat </label>
+										<div class="col-md-4">
+											<select th:field="*{contrat.id}"
+												class="form-control input-circle">
+												<option th:each="contrat : ${contrats}"
+													th:value="${contrat.id}"
+													th:text="${contrat.numero +'-' +contrat.service}"></option>
+											</select>
+
+										</div>
+									</div>
+									<div class="form-actions">
+										<div class="row">
+											<div class="col-md-offset-4 col-md-9">
+												<button type="submit" class="btn btn-circle "  style="background-color:#3b5998; color:white;">Valider</button>
+												<button type="button"
+													class="btn btn-circle grey-salsa btn-outline">Annuler</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+							<!-- END FORM-->
+						</div>
+					</div>
+				</div>
+				               
+				
+				<div class="portlet box green" th:if="${facilites != null and facilites.size() &gt; 0}">
+					<div class="portlet-title" style="background-color:#3b5998;">
+						<div class="caption">
+							<i class="fa fa-cogs"></i>Mes Facilités
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class="collapse"> </a> <a
+								href="#portlet-config" data-toggle="modal" class="config"> </a>
+							<a href="javascript:;" class="reload"> </a> <a
+								href="javascript:;" class="remove"> </a>
+						</div>
+					</div>
+					<div class="portlet-body" >
+						<div class="table-scrollable">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th width="25%" >Numéro Facilité</th>
+
+										<th width="25%" >Etat</th>
+										<th width="25%" >Montant</th>
+										<th width="25%" >Action</th>
+
+
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="facilite : ${facilites}">
+												<td th:text="${facilite.id}"></td>
+												<td th:text="${facilite.etat}"></td>
+												<td th:text="${facilite.montant}"></td>
+										<td><button id="voirListEcheances" th:value="${facilite.id}"
+												style="background-color: #3b5998; color: white;"
+												type="button" class="icon-list btn btn-circle ">
+												Détail</button></td>
+
+
+
+
+
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- END SAMPLE TABLE PORTLET-->
+				<div id="listEcheances"></div>
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT BODY -->
+
+	<!-- END CONTAINER -->
+	<!-- BEGIN FOOTER -->
+	<div th:include="/Fragment/footer:: footer"></div>
+
+	<!-- END FOOTER -->
+	<!--[if lt IE 9]>
+<script src="resources/assets/global/plugins/respond.min.js"></script>
+<script src="resources/assets/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+	<div th:include="/Fragment/resources_js :: js_resources"></div>
+
+<script th:inline="javascript">
+	
+	$(document).ready(function() {
+		$("#voirListEcheances").on("click",function(){
+			$.post("listEcheances",//l url de la fct de traitement
+				{
+				idFacilite:$(this).val(),//on envoie les parametres par lesquells on veut travailler dans le controller
+				},
+				function(data, status) {
+					if (status == "success") {
+						$("#listEcheances").html(data);
+					}
+				}			
+			)
+		});
+		});
+	
+	
+	/*<![CDATA[*/
+	
+	$("#modalFacilite").hide();
+	empty = /*[[${emptyFacilite}]]*/;
+	if (empty) {
+    	$("#modalFacilite").click();
+	}
+	 
+	 /*]]>*/
+		</script>
+		</body>
+</html>
