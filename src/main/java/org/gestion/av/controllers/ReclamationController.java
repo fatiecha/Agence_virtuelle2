@@ -1,16 +1,20 @@
 package org.gestion.av.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.gestion.av.entities.Client;
+import org.gestion.av.entities.Facture;
 import org.gestion.av.entities.Reclamation;
 import org.gestion.av.metier.AjoutReclamationMetier;
 import org.gestion.av.metier.ConsulterContratsMetier;
 import org.gestion.av.metier.ConsulterReclamationsMetier;
 import org.gestion.av.service.IAgenceService;
+import org.gestion.av.serviceImpl.AudioReclamation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +29,11 @@ public class ReclamationController {
 	private AjoutReclamationMetier reclamationMetier;
 	private ConsulterReclamationsMetier consulterReclamationsMetier;
 	private IAgenceService agenceService;
+	private AudioReclamation audioReclamation;
+
+	public void setAudioReclamation(AudioReclamation audioReclamation) {
+		this.audioReclamation = audioReclamation;
+	}
 
 	public void setReclamationMetier(AjoutReclamationMetier reclamationMetier) {
 		this.reclamationMetier = reclamationMetier;
@@ -80,16 +89,28 @@ public class ReclamationController {
 		msg = reclamationMetier.ajouterReclamation(Long.toString(r.getIdcon()), r.getOrigine(), r.getTypeR(),
 				r.getCommentaire());
 		if (msg.equals("oui")) {
-			boolReclamation=true;
-			model.addAttribute("checkRec",boolReclamation);
-			//return "redirect:/Reclamation/listReclamations";
-		}
-		else{
-			boolReclamation=false;
-			model.addAttribute("checkRec",boolReclamation);
+			boolReclamation = true;
+			model.addAttribute("checkRec", boolReclamation);
+			// return "redirect:/Reclamation/listReclamations";
+		} else {
+			boolReclamation = false;
+			model.addAttribute("checkRec", boolReclamation);
 		}
 		return "Reclamation/ajoutReclamation";
-		
+
+	}
+
+	@RequestMapping(value = "/sendAudio", method = RequestMethod.GET)
+	public void sendAudioReclamation(HttpServletRequest pRequest, HttpServletResponse response) throws IOException {
+		audioReclamation.recording();
+		audioReclamation.sending(4, 5);
+	}
+
+	@RequestMapping(value = "/audioReclamation", method = RequestMethod.POST)
+	public String envoyerAudioReclamation() {
+		audioReclamation.recording();
+		audioReclamation.sending(4, 5);
+		return "Reclamation/listReclamations";
 	}
 
 }

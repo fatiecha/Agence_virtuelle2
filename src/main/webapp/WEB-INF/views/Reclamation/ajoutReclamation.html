@@ -10,6 +10,32 @@
 
 <body
 	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+		<div class="modal fade" id="confirmerEnvoi" tabindex="-1" role="basic"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"></button>
+					<h4 class="modal-title">Information</h4>
+				</div>
+				<div class="modal-body">
+
+
+					<div class="portlet-body">Enregistrement vocal terminé.Votre réclamation est envoyée.</div>
+
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn  btn-outline btn-circle"
+						data-dismiss="modal"
+						style="background-color: #ffdb4d; color: white;">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a id="modalpdf" data-toggle="modal" href="#confirmerEnvoi"></a>
 		<div class="modal fade" id="static" tabindex="-1" role="basic"
 		aria-hidden="true">
 		<div class="modal-dialog">
@@ -67,6 +93,13 @@
 
 				</div>
 				<!-- END PAGE HEADER-->
+			
+				Envoyer audio reclamation ? <button 
+												style="background-color: #3b5998; color: white;"
+												type="button"
+												class="fa  fa-microphone btn btn-circle AudioReclamation">
+												</button>
+
 				<div class="tab-pane active" id="tab_0">
 					<div class="portlet box green">
 						<div class="portlet-title" style="background-color: #3b5998;">
@@ -161,7 +194,20 @@
 	</div>
 	<script th:inline="javascript">
 	
-	
+	$(document).ready(function() {
+		$(".AudioReclamation").on("click",function(){
+			$.post("audioReclamation",//l url de la fct de traitement
+				{
+				id:1,
+				},
+				function(data, status) {
+					if (status == "success") {
+						alert("rr");
+					}
+				}			
+			)
+		});
+		});
 		
 	/*<![CDATA[*/
 	

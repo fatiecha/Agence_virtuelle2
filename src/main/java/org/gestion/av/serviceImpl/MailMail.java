@@ -39,4 +39,25 @@ public class MailMail {
 	     }
 	     mailSender.send(message);
          }
+	
+	public void sendMailAudio(int i,long idClient , long idContrat) {
+
+		   MimeMessage message = mailSender.createMimeMessage();
+
+		   try{
+			MimeMessageHelper helper = new MimeMessageHelper(message, true);
+			String to = "radeema.client@gmail.com";
+			helper.setFrom("fati.echarqaoui@gmail.com");
+			helper.setTo(to);
+			helper.setSubject("Audio Réclamation : ");
+			helper.setText("Ci-joint la réclamation du client N° : "+idClient +" du contrat N° : "+ idContrat);
+
+			FileSystemResource file = new FileSystemResource("C:/Users/Fatimzhra/workspace/Agence_virtuelle2/src/main/java/Audio/ReclamationAudio" + i + ".wav");
+			helper.addAttachment(file.getFilename(), file);
+
+		     }catch (MessagingException e) {
+			throw new MailParseException(e);
+		     }
+		     mailSender.send(message);
+	         }
 }
