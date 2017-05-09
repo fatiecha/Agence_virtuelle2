@@ -12,13 +12,10 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
 
-import org.gestion.av.serviceImpl.MailMail;
+import org.gestion.av.entities.Client;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.mail.MailSender;
 
-import test.Test;
-
-public class AudioReclamation {
+public class AudioReclamation implements Runnable{
 	static ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 			new String[] { "applicationContext.xml" });
 	// record duration, in milliseconds
@@ -54,7 +51,7 @@ public class AudioReclamation {
 	/**
 	 * Captures the sound and record into a WAV file
 	 */
-	void start() {
+	public void start() {
 		try {
 			AudioFormat format = getAudioFormat();
 			DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
@@ -96,35 +93,48 @@ public class AudioReclamation {
 	/**
 	 * Entry to run the program
 	 */
-	public static  boolean recording() {
-		boolean bool = false;
-		final AudioReclamation recorder = new AudioReclamation();
-		// creates a new thread that waits for a specified
-		// of time before stopping
-		Thread stopper = new Thread(new Runnable() {
-			public void run() {
-				try {
-					Thread.sleep(RECORD_TIME);
-				} catch (InterruptedException ex) {
-					ex.printStackTrace();
-				}
-				recorder.finish();
-			}
-		});
+//	public   boolean recording() {
+//		boolean bool = false;
+//		final AudioReclamation recorder = new AudioReclamation();
+//		// creates a new thread that waits for a specified
+//		// of time before stopping
+//		Thread stopper = new Thread(new Runnable() {
+//			public void run() {
+//				try {
+//					Thread.sleep(RECORD_TIME);
+//				} catch (InterruptedException ex) {
+//					ex.printStackTrace();
+//				}
+//				recorder.finish();
+//			}
+//		});
+//
+//		stopper.start();
+//
+//		// start recording
+//		recorder.start();
+//		bool = true;
+//		return bool;
+//	}
 
-		stopper.start();
-
-		// start recording
-		recorder.start();
-		bool = true;
-		return bool;
-	}
-
-	public  static boolean sending(long idClient, long idContrat) {
+	public   boolean sending(Client c) {
 		boolean bool = false;
 		MailMail mm = (MailMail) context.getBean("mailMail");
-		mm.sendMailAudio(i, idClient, idContrat);
+		mm.sendMailAudio(i,c );
 		bool = true;
 		return bool;
 	}
+
+	@Override
+	public void run() {
+			try {
+				Thread.sleep(RECORD_TIME);
+			} catch (InterruptedException ex) {
+				ex.printStackTrace();
+			}
+			this.finish();
+		
+		
+	}
+	
 }

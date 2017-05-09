@@ -10,7 +10,7 @@
 
 <body
 	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
-		<div class="modal fade" id="confirmerEnvoi" tabindex="-1" role="basic"
+	<div class="modal fade" id="confirmerEnvoi" tabindex="-1" role="basic"
 		aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -22,7 +22,8 @@
 				<div class="modal-body">
 
 
-					<div class="portlet-body">Enregistrement vocal terminé.Votre réclamation est envoyée.</div>
+					<div class="portlet-body">Enregistrement vocal terminé.Votre
+						réclamation est envoyée.</div>
 
 
 
@@ -36,7 +37,7 @@
 		</div>
 	</div>
 	<a id="modalpdf" data-toggle="modal" href="#confirmerEnvoi"></a>
-		<div class="modal fade" id="static" tabindex="-1" role="basic"
+	<div class="modal fade" id="static" tabindex="-1" role="basic"
 		aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -62,7 +63,7 @@
 		</div>
 	</div>
 	<a id="modalReclamation" data-toggle="modal" href="#static"></a>
-	
+
 	<!-- BEGIN HEADER -->
 	<div th:include="/Fragment/header :: entete"></div>
 
@@ -93,13 +94,28 @@
 
 				</div>
 				<!-- END PAGE HEADER-->
-			
-				Envoyer audio reclamation ? <button 
-												style="background-color: #3b5998; color: white;"
-												type="button"
-												class="fa  fa-microphone btn btn-circle AudioReclamation">
-												</button>
 
+				<table>
+					<tbody>
+						<tr>
+							<td class="form-actions " style="padding-right: 20px;">Envoyer
+								audio reclamation ?</td>
+
+							<td><button style="background-color: #3b5998; color: white;"
+									type="button"
+									class="fa  fa-microphone btn btn-circle AudioReclamation">
+								</button></td>
+								</tr>
+								<tr>
+							<td style="margin-left:500px;">
+								<div id="circle"></div>
+							</td>
+
+						</tr>
+
+					</tbody>
+				</table>
+				
 				<div class="tab-pane active" id="tab_0">
 					<div class="portlet box green">
 						<div class="portlet-title" style="background-color: #3b5998;">
@@ -122,22 +138,22 @@
 									<div class="form-group">
 										<label class="col-md-4 control-label">Numéro Contrat </label>
 										<div class="col-md-4">
-											<select th:field="*{idcon}" class="form-control input-circle" required="required" >
+											<select th:field="*{idcon}" class="form-control input-circle"
+												required="required">
 												<option th:each="contrat : ${contrats}"
 													th:value="${contrat.id}"
-													th:text="${contrat.numero +'-' +contrat.service}" ></option>
-																	</select>
-											
+													th:text="${contrat.numero +'-' +contrat.service}"></option>
+											</select>
+
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-md-4 control-label">Type Réclamation
 										</label>
 										<div class="col-md-4">
-											<select th:field="*{typeR}" class="form-control input-circle" > 
+											<select th:field="*{typeR}" class="form-control input-circle">
 												<option th:each="type : ${typesReclamation}"
-													th:value="${type.libelle}"
-													th:text="${type.libelle}"></option>
+													th:value="${type.libelle}" th:text="${type.libelle}"></option>
 											</select>
 										</div>
 									</div>
@@ -165,7 +181,7 @@
 										<div class="row">
 											<div class="col-md-offset-4 col-md-9">
 												<button type="submit" class="btn btn-circle "
-													style="background-color: #3b5998; color: white;" >Soumettre</button>
+													style="background-color: #3b5998; color: white;">Soumettre</button>
 												<button type="button"
 													class="btn btn-circle grey-salsa btn-outline">Annuler</button>
 											</div>
@@ -191,18 +207,28 @@
 <script src="resources/assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
 		<div th:include="/Fragment/resources_js :: js_resources"></div>
+
+		<script src="/av/resources/login/js/circle-progress.min.js"></script>
 	</div>
 	<script th:inline="javascript">
 	
 	$(document).ready(function() {
 		$(".AudioReclamation").on("click",function(){
+			 $('#circle').circleProgress({
+				    value:1,
+				    size: 50,
+				    fill: {
+				      gradient: ["blue", "yellow"]
+				    },
+				    animation:{ duration: 30000 }
+				  });
 			$.post("audioReclamation",//l url de la fct de traitement
-				{
+					{
 				id:1,
 				},
 				function(data, status) {
 					if (status == "success") {
-						alert("rr");
+						$("#modalpdf").click();
 					}
 				}			
 			)
@@ -223,6 +249,7 @@
 	}
 	 
 	 /*]]>*/
+	
 		</script>
 </body>
 

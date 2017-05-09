@@ -2,6 +2,7 @@ package org.gestion.av.serviceImpl;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.gestion.av.entities.Client;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.MailParseException;
 import org.springframework.mail.SimpleMailMessage;
@@ -40,7 +41,7 @@ public class MailMail {
 	     mailSender.send(message);
          }
 	
-	public void sendMailAudio(int i,long idClient , long idContrat) {
+	public void sendMailAudio(int i,Client client) {
 
 		   MimeMessage message = mailSender.createMimeMessage();
 
@@ -49,8 +50,8 @@ public class MailMail {
 			String to = "radeema.client@gmail.com";
 			helper.setFrom("fati.echarqaoui@gmail.com");
 			helper.setTo(to);
-			helper.setSubject("Audio Réclamation : ");
-			helper.setText("Ci-joint la réclamation du client N° : "+idClient +" du contrat N° : "+ idContrat);
+			helper.setSubject("RECLAMATION CLIENT  ");
+			helper.setText("Ci-joint la réclamation du client   , CIN : "+ client.getCIN() +" , Nom : " +client.getNom()+" , Prénom : " +client.getPrenom());
 
 			FileSystemResource file = new FileSystemResource("C:/Users/Fatimzhra/workspace/Agence_virtuelle2/src/main/java/Audio/ReclamationAudio" + i + ".wav");
 			helper.addAttachment(file.getFilename(), file);

@@ -1,5 +1,6 @@
 package test;
 
+import org.gestion.av.entities.Client;
 import org.gestion.av.serviceImpl.AudioReclamation;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,14 +13,16 @@ public class Test {
 
 //    
     
-    public static void main(String[] args) {
-    	boolean a=AudioReclamation.recording();
-    	if(a){
-    		AudioReclamation.sending(4,5);
-    	}
-//    	MailMail mm = (MailMail) context.getBean("mailMail");
-//        mm.sendMailAudio();
-    }
+//    public static void main(String[] args) {
+//    	boolean a=AudioReclamation.recording();
+//    	Client c=new Client("a","a","a","a","a","a");
+//    	c.setId(7);
+//    	if(a){
+//    		AudioReclamation.sending(c);
+//    	}
+////    	MailMail mm = (MailMail) context.getBean("mailMail");
+////        mm.sendMailAudio();
+//    }
    
 }
 

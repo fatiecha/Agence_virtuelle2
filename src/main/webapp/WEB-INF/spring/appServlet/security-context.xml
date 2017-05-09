@@ -26,7 +26,7 @@
 	<beans:bean
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"
 		id="daoAuthenticationProvider">
-		<beans:property ref="userService" name="userDetailsService" />
+		<beans:property name="userDetailsService" ref="userService"  />
 	</beans:bean>
 
 	<beans:bean id="authenticationManager"

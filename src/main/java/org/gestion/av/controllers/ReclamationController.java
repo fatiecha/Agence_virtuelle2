@@ -29,12 +29,9 @@ public class ReclamationController {
 	private AjoutReclamationMetier reclamationMetier;
 	private ConsulterReclamationsMetier consulterReclamationsMetier;
 	private IAgenceService agenceService;
-	private AudioReclamation audioReclamation;
+	private final  AudioReclamation audioReclamation=new AudioReclamation();
 
-	public void setAudioReclamation(AudioReclamation audioReclamation) {
-		this.audioReclamation = audioReclamation;
-	}
-
+	
 	public void setReclamationMetier(AjoutReclamationMetier reclamationMetier) {
 		this.reclamationMetier = reclamationMetier;
 	}
@@ -100,17 +97,19 @@ public class ReclamationController {
 
 	}
 
-	@RequestMapping(value = "/sendAudio", method = RequestMethod.GET)
-	public void sendAudioReclamation(HttpServletRequest pRequest, HttpServletResponse response) throws IOException {
-		audioReclamation.recording();
-		audioReclamation.sending(4, 5);
-	}
+	
 
 	@RequestMapping(value = "/audioReclamation", method = RequestMethod.POST)
-	public String envoyerAudioReclamation() {
-		audioReclamation.recording();
-		audioReclamation.sending(4, 5);
-		return "Reclamation/listReclamations";
+	public String envoyerAudioReclamation(HttpServletRequest pRequest, Model model) {
+		Client client = (Client) pRequest.getSession().getAttribute("clientConnecte");
+		 Thread t = new Thread(audioReclamation);
+		  t.start();
+		  audioReclamation.start();
+		audioReclamation.sending(client);
+		model.addAttribute("contrats", consulterContratsMetier.consulterContrats(Long.toString(client.getId())));
+		model.addAttribute("typesReclamation", agenceService.getlibelleTypeReclamation());
+		model.addAttribute("reclamation", new Reclamation());
+		return "Reclamation/ajoutReclamation";
 	}
 
 }
