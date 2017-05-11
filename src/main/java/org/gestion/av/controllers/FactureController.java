@@ -108,7 +108,7 @@ public class FactureController {
 	@RequestMapping(value="/download/{idFacture}", method = RequestMethod.GET)
 	public void download(HttpServletRequest pRequest,HttpServletResponse response,@PathVariable("idFacture") long idFacture) throws IOException {
 		File file = null;
-		 String EXTERNAL_FILE_PATH="C:\\Users\\Fatimzhra\\Desktop\\Files\\Facture"+idFacture+".pdf";
+		 String EXTERNAL_FILE_PATH="C:/Users/Fatimzhra/workspace/Agence_virtuelle2/src/main/java/Pdf/Facture" + idFacture + ".pdf";
 		 Client client = (Client) pRequest.getSession().getAttribute("clientConnecte");
 			generatePDF.genererPdf(idFacture,client.getId());
 			file = new File(EXTERNAL_FILE_PATH);

@@ -32,7 +32,7 @@ public class MailMail {
 		helper.setSubject(simpleMailMessage.getSubject());
 		helper.setText("Veuillez  trouver en pièces jointes votre facture :");
 
-		FileSystemResource file = new FileSystemResource("C:\\Users\\Fatimzhra\\Desktop\\Files\\Facture" + idFacture + ".pdf");
+		FileSystemResource file = new FileSystemResource("C:/Users/Fatimzhra/workspace/Agence_virtuelle2/src/main/java/Pdf/Facture" + idFacture + ".pdf");
 		helper.addAttachment(file.getFilename(), file);
 
 	     }catch (MessagingException e) {

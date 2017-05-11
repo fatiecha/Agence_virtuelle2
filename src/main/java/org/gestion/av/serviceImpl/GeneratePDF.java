@@ -38,7 +38,7 @@ public class GeneratePDF {
 		long idContrat = contrat.getId();
 		Demande_abonnement demande_abonnement = agenceService.getAbonnementByIdContrat(idContrat);
 		Consommation consommation = agenceService.getConsommationByIdFactureIdContrat(idFacture, idContrat);
-		String chemin = "C:\\Users\\Fatimzhra\\Desktop\\Files\\Facture" + idFacture + ".pdf";
+		String chemin = "C:/Users/Fatimzhra/workspace/Agence_virtuelle2/src/main/java/Pdf/Facture" + idFacture + ".pdf";
 		Document document = new Document();
 		try {
 			if (contrat.getService().equals("Basse tension") || (contrat.getService().equals("Basse Tension"))) {
