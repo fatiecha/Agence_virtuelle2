@@ -116,5 +116,9 @@ public class AgenceDaoImpl implements IAgenceDao {
 		return (Demande_abonnement) req.getSingleResult();
 	}
 
+	public void setEm(EntityManager pEm) {
+		this.em = pEm;
+	}
 
+	
 }

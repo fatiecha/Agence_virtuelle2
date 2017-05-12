@@ -130,7 +130,9 @@
 		<property name="consulterContratsMetier" ref="consulterContratsMetier"></property>
 		<property name="agenceService" ref="agenceServiceImpl"></property>
 	</bean>
-
+<bean id="userService" class="org.gestion.av.serviceImpl.UserDetailsServiceImpl">
+	<property name="dao" ref="daoService"></property>
+	</bean>
 
 
 </beans>

@@ -6,27 +6,29 @@
                     http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<!-- We will be defining all security related configurations in this file -->
-	<http pattern="/login" security="none"/>
-	
+	<http pattern="/login" security="none" />
+
 	<http use-expressions="true">
-		<intercept-url pattern="/resources/**" access="permitAll"/>
-		<intercept-url pattern="/login_error" access="permitAll"/>
+		<intercept-url pattern="/resources/**" access="permitAll" />
+		<intercept-url pattern="/login_error" access="permitAll" />
+		<intercept-url pattern="/mdpOublie" access="permitAll" />
+		<intercept-url pattern="/inscriptionClient" access="permitAll" />
+		<intercept-url pattern="/envoyerMDP" access="permitAll" />
+		<intercept-url pattern="/sinscrire" access="permitAll" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />
-		
-		 <!-- this means all URL in this app will be checked if user is authenticated -->
-		<form-login login-page="/connexionClient" 
-		 authentication-failure-url="/login_error"
-		 
-		/> <!-- We will just use the built-in form login page in Spring -->
-		<logout logout-success-url="/connexionClient" />
+
+		<!-- this means all URL in this app will be checked if user is authenticated -->
+		<form-login login-page="/login" authentication-failure-url="/login_error"
+			authentication-success-handler-ref="customAuthenticationSuccessHandler" /> <!-- We will just use the built-in form login page in Spring -->
+		<logout logout-success-url="/login" />
 	</http>
-	
+
 
 
 	<beans:bean
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"
 		id="daoAuthenticationProvider">
-		<beans:property name="userDetailsService" ref="userService"  />
+		<beans:property name="userDetailsService" ref="userService" />
 	</beans:bean>
 
 	<beans:bean id="authenticationManager"
@@ -37,7 +39,6 @@
 
 	<authentication-manager>
 		<authentication-provider user-service-ref="userService">
-			<password-encoder hash="md5" />
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>

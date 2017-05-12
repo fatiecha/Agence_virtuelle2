@@ -63,7 +63,7 @@ public class ClientController {
 		return "inscriptionClient";
 	}
 
-	@RequestMapping(value = "/seConnecter")
+	@RequestMapping(value = "/seConnecter", method = RequestMethod.POST)
 	public String login(HttpServletRequest pRequest, Model model, @ModelAttribute(value = "client") Client cli) {
 
 		HttpSession pSession = pRequest.getSession();
@@ -81,12 +81,18 @@ public class ClientController {
 		return "connexionClient";
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String seConnecter(Model model) {
 		model.addAttribute("client", new Client());
 		return "connexionClient";
 	}
 
+	@RequestMapping(value = "/login_error", method = RequestMethod.GET)
+	public String erreurConnexion(Model model) {
+		model.addAttribute("client", new Client());
+		return "connexionClient";
+	}
+	
 	@RequestMapping(value = "/updateClient", method = RequestMethod.GET)
 	public String updateClient(HttpServletRequest pRequest, Model model) {
 		Client client = (Client) pRequest.getSession().getAttribute("clientConnecte");
