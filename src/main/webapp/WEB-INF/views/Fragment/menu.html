@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <title>Insert title here</title>
 </head>
+
 <body>
 	<div th:fragment="menu">
 		<div class="page-sidebar-wrapper">
@@ -22,14 +23,14 @@
 					class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu "
 					data-keep-expanded="false" data-auto-scroll="true"
 					data-slide-speed="200">
-					<li class="nav-item"><a href="javascript:;"
+					<li class="nav-item "><a href="javascript:;"
 						class="nav-link nav-toggle"> <i class="icon-home"></i> <span
 							class="title">Contrat</span> <span class="selected"></span> <span
 							class="arrow open"></span>
 					</a>
 						<ul class="sub-menu">
 
-							<li class="nav-item "><a th:href="@{/Contrat/association}"
+							<li class="nav-item  "><a th:href="@{/Contrat/association}"
 								class="nav-link "> <i class="icon-bulb"></i> <span
 									class="title">Association Contrat</span>
 							</a></li>
@@ -39,14 +40,15 @@
 
 							</a></li>
 						</ul></li>
-					<li class="nav-item "><a href="javascript:;"
+					<li class="nav-item  "><a href="javascript:;"
 						class="nav-link nav-toggle"> <i class="icon-diamond"></i> <span
 							class="title">Compte</span> <span class="arrow"></span>
 					</a>
 						<ul class="sub-menu ">
-							<li class="nav-item  "><a th:href="@{/Compte/consultation}"
-								class="nav-link "> <i class="icon-bulb"></i> <span
-									class="title">Récapitulatif Compte</span>
+							<li class="nav-item  "><a
+								th:href="@{/Compte/consultation}" class="nav-link "> <i
+									class="icon-bulb"></i> <span class="title">Récapitulatif
+										Compte</span>
 							</a></li>
 
 
@@ -130,7 +132,7 @@
 						<ul class="sub-menu">
 							<li class="nav-item  "><a
 								th:href="@{/Facture/simulerFacture}" class="nav-link "> <i
-									class="icon-wrench"></i> <span class="title">Simuler 
+									class="icon-wrench"></i> <span class="title">Simuler
 										Facture</span>
 							</a></li>
 							<li class="nav-item  "><a th:href="@{/Facture/listFactures}"

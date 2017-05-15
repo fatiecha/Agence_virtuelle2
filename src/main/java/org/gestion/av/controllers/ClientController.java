@@ -90,6 +90,7 @@ public class ClientController {
 	@RequestMapping(value = "/login_error", method = RequestMethod.GET)
 	public String erreurConnexion(Model model) {
 		model.addAttribute("client", new Client());
+		model.addAttribute("checkInfo", true);
 		return "connexionClient";
 	}
 	
