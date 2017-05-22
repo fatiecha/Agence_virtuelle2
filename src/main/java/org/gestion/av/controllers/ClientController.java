@@ -119,7 +119,7 @@ public class ClientController {
 		message.setTo(c.getEmail());
 		message.setSubject(subject);
 
-		message.setText("Votre informations ===> CIN : " + c.getCIN() + " , MOT DE PASSE : " + c.getMDP());
+		message.setText("Inscription réussie . Vos informations : CIN : " + c.getCIN() + " , MOT DE PASSE : " + c.getMDP());
 
 		mailSender.send(message);
 	}
