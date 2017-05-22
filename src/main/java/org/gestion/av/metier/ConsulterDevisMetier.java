@@ -42,7 +42,7 @@ public class ConsulterDevisMetier {
 
 	public List<Devis> consuterDevis(String id_contrat) {
 		List<Devis> Devis = new ArrayList<Devis>();
-		String s = null;
+//		String s = null;
 		try {
 			// Create SOAP Connection
 			SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
@@ -158,17 +158,17 @@ public class ConsulterDevisMetier {
 		return rslt;
 	}
 
-	private String printSOAPResponse33(SOAPMessage soapResponse) throws Exception {
-		String rslt = null;
-
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		Source sourceContent = soapResponse.getSOAPPart().getContent();
-		StreamResult sr = new StreamResult(System.out);
-
-		transformer.transform(sourceContent, sr);
-
-		return rslt;
-
-	}
+//	private String printSOAPResponse33(SOAPMessage soapResponse) throws Exception {
+//		String rslt = null;
+//
+//		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+//		Transformer transformer = transformerFactory.newTransformer();
+//		Source sourceContent = soapResponse.getSOAPPart().getContent();
+//		StreamResult sr = new StreamResult(System.out);
+//
+//		transformer.transform(sourceContent, sr);
+//
+//		return rslt;
+//
+//	}
 }

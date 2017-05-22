@@ -39,7 +39,7 @@ import org.xml.sax.SAXException;
 public class ConsulterEcheancesMetier {
 	public ArrayList<Echeance> consuterEcheance(String id_fac) {
 		List<Echeance> Echeances = new ArrayList<Echeance>();
-		String s = null;
+//		String s = null;
 		try {
 			// Create SOAP Connection
 			SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();

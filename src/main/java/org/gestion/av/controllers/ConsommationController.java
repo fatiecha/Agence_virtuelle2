@@ -9,13 +9,11 @@ import org.gestion.av.entities.Client;
 import org.gestion.av.entities.Consommation;
 import org.gestion.av.metier.ConsulterConsommationsMetier;
 import org.gestion.av.metier.ConsulterContratsMetier;
-import org.gestion.av.service.IAgenceService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/Consommation")
 @Controller
 public class ConsommationController {

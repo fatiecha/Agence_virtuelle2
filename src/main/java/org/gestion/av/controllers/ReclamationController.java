@@ -1,14 +1,11 @@
 package org.gestion.av.controllers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.gestion.av.entities.Client;
-import org.gestion.av.entities.Facture;
 import org.gestion.av.entities.Reclamation;
 import org.gestion.av.metier.AjoutReclamationMetier;
 import org.gestion.av.metier.ConsulterContratsMetier;

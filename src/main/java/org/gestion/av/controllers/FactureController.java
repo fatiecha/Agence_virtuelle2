@@ -39,7 +39,7 @@ public class FactureController {
 	private GeneratePDF generatePDF;
 	private MailMail mailMail;
 	
-	private static final String INTERNAL_FILE="irregular-verbs-list.pdf";
+//	private static final String INTERNAL_FILE="irregular-verbs-list.pdf";
 	public void setMailMail(MailMail mailMail) {
 		this.mailMail = mailMail;
 	}

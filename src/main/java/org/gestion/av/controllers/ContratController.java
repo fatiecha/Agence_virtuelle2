@@ -1,13 +1,11 @@
 package org.gestion.av.controllers;
 
-import org.gestion.av.models.ConCliModel;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.gestion.av.entities.Client;
-import org.gestion.av.entities.Reclamation;
 import org.gestion.av.metier.AjoutConCliMetier;
 import org.gestion.av.metier.ConsulterContratsMetier;
+import org.gestion.av.models.ConCliModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;

@@ -41,7 +41,7 @@ import org.xml.sax.SAXException;
 public class ConsulterFacturesMetier {
 	public List<Facture> consuterFacture(String id_contrat) {
 		List<Facture> Factures = new ArrayList<Facture>();
-		String s = null;
+//		String s = null;
 		try {
 			// Create SOAP Connection
 			SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();

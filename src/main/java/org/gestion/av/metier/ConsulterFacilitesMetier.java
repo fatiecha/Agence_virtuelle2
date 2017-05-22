@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +40,7 @@ import org.xml.sax.SAXException;
 public class ConsulterFacilitesMetier {
 	public ArrayList<Facilite> consuterFacilite(String id_contrat) {
 		List<Facilite> Facilites = new ArrayList<Facilite>();
-		String s = null;
+//		String s = null;
 		try {
 			// Create SOAP Connection
 			SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
@@ -93,8 +92,8 @@ public class ConsulterFacilitesMetier {
 
 	private static ArrayList<Facilite> printSOAPResponse(SOAPMessage soapResponse) throws Exception {
 		ArrayList<Facilite> rslt = new ArrayList<Facilite>();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//		SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
 		try {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
@@ -151,18 +150,18 @@ public class ConsulterFacilitesMetier {
 
 		return rslt;
 	}
-	private String printSOAPResponse33(SOAPMessage soapResponse) throws Exception {
-		String rslt = null;
-
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		Source sourceContent = soapResponse.getSOAPPart().getContent();
-		StreamResult sr = new StreamResult(System.out);
-
-		transformer.transform(sourceContent, sr);
-
-		return rslt;
-
-	}
+//	private String printSOAPResponse33(SOAPMessage soapResponse) throws Exception {
+//		String rslt = null;
+//
+//		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+//		Transformer transformer = transformerFactory.newTransformer();
+//		Source sourceContent = soapResponse.getSOAPPart().getContent();
+//		StreamResult sr = new StreamResult(System.out);
+//
+//		transformer.transform(sourceContent, sr);
+//
+//		return rslt;
+//
+//	}
 
 }

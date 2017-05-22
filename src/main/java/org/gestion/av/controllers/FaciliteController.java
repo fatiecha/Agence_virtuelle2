@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.gestion.av.entities.Client;
 import org.gestion.av.entities.Echeance;
 import org.gestion.av.entities.Facilite;
-import org.gestion.av.entities.Reclamation;
 import org.gestion.av.metier.ConsulterContratsMetier;
 import org.gestion.av.metier.ConsulterEcheancesMetier;
 import org.gestion.av.metier.ConsulterFacilitesMetier;

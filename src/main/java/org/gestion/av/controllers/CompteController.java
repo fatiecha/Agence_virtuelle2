@@ -1,17 +1,11 @@
 package org.gestion.av.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.gestion.av.entities.Client;
 import org.gestion.av.entities.Compte;
-import org.gestion.av.entities.Consommation;
-import org.gestion.av.entities.Reclamation;
 import org.gestion.av.metier.ConsulterCompteMetier;
 import org.gestion.av.metier.ConsulterContratsMetier;
-import org.gestion.av.service.IAgenceService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;

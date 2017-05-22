@@ -9,10 +9,6 @@ import javax.xml.soap.SOAPElement;
 import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,17 +73,17 @@ public class AjoutConCliMetier {
 
         return soapMessage;
     }
-	private String printSOAPResponse33(SOAPMessage soapResponse) throws Exception {
-		String rslt = null;
-
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		Source sourceContent = soapResponse.getSOAPPart().getContent();
-		StreamResult sr = new StreamResult(System.out);
-
-		transformer.transform(sourceContent, sr);
-
-		return rslt;
-
-	}
+//	private String printSOAPResponse33(SOAPMessage soapResponse) throws Exception {
+//		String rslt = null;
+//
+//		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+//		Transformer transformer = transformerFactory.newTransformer();
+//		Source sourceContent = soapResponse.getSOAPPart().getContent();
+//		StreamResult sr = new StreamResult(System.out);
+//
+//		transformer.transform(sourceContent, sr);
+//
+//		return rslt;
+//
+//	}
 }

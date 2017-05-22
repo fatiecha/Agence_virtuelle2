@@ -37,8 +37,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import tools.PSR;
-
 @Transactional
 public class ConsulterConsommationsMetier {
 
@@ -161,18 +159,18 @@ public class ConsulterConsommationsMetier {
 	}
 
 	// pour voir tt le stream
-	private String printSOAPResponse33(SOAPMessage soapResponse) throws Exception {
-		String rslt = null;
-
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		Source sourceContent = soapResponse.getSOAPPart().getContent();
-		StreamResult sr = new StreamResult(System.out);
-
-		transformer.transform(sourceContent, sr);
-
-		return rslt;
-
-	}
+//	private String printSOAPResponse33(SOAPMessage soapResponse) throws Exception {
+//		String rslt = null;
+//
+//		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+//		Transformer transformer = transformerFactory.newTransformer();
+//		Source sourceContent = soapResponse.getSOAPPart().getContent();
+//		StreamResult sr = new StreamResult(System.out);
+//
+//		transformer.transform(sourceContent, sr);
+//
+//		return rslt;
+//
+//	}
 
 }

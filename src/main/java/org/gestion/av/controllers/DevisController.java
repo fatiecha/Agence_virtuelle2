@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.gestion.av.entities.Client;
-import org.gestion.av.entities.Consommation;
 import org.gestion.av.entities.Devis;
 import org.gestion.av.metier.ConsulterContratsMetier;
 import org.gestion.av.metier.ConsulterDevisMetier;

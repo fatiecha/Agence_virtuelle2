@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.gestion.av.dao.IAgenceDao;
 import org.gestion.av.daoImpl.AgenceDaoImpl;
 import org.gestion.av.entities.Client;
 import org.gestion.av.metier.CountFIMetier;
